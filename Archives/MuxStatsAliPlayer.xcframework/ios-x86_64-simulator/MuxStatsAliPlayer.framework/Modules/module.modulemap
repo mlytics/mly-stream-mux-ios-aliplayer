@@ -1,0 +1,11 @@
+framework module MuxStatsAliPlayer {
+  umbrella header "MuxStatsAliPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module MuxStatsAliPlayer.Swift {
+  header "MuxStatsAliPlayer-Swift.h"
+  requires objc
+}

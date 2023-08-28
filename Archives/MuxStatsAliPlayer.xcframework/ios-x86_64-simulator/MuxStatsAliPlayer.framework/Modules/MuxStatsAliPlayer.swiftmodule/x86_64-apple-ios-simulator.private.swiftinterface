@@ -1,0 +1,168 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
+// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MuxStatsAliPlayer
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFoundation
+import AVKit
+import AliyunMediaDownloader
+import AliyunPlayer
+import CoreMedia
+import Foundation
+import MuxCore
+@_exported import MuxStatsAliPlayer
+import Swift
+import SystemConfiguration
+import UIKit
+import _Concurrency
+import _StringProcessing
+@objc @_hasMissingDesignatedInitializers @objcMembers @_Concurrency.MainActor(unsafe) public class AliPlayerControlsView : UIKit.UIView {
+  @objc @_Concurrency.MainActor(unsafe) public var progressSlider: UIKit.UISlider!
+  @objc @_Concurrency.MainActor(unsafe) public var title: Swift.String! {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) public var isMute: Swift.Bool! {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var isShowsPlaybackControls: Swift.Bool! {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @objc deinit
+}
+extension MuxStatsAliPlayer.AliPlayerControlsView {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func setProgressValue(position: Swift.Int64)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func play()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func pause()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func stop()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func replay()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func mute()
+}
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public static func statusBarHeight() -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor(unsafe) public static func navigationBarHeight() -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor(unsafe) public static func navigationFullHeight() -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor(unsafe) public static func tabBarHeight() -> CoreFoundation.CGFloat
+}
+extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public static func screenWidth() -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor(unsafe) public static func screenHeight() -> CoreFoundation.CGFloat
+}
+public enum LogLevel : Swift.Int {
+  case verbose
+  case debug
+  case info
+  case warning
+  case error
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers public class Logger {
+  public static var logLevel: MuxStatsAliPlayer.LogLevel
+  @objc public static var isLoggingEnabled: Swift.Bool
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class MLYAliListPlayer : MuxStatsAliPlayer.PlayerBase {
+  @objc public var listPlayer: AliyunPlayer.AliListPlayer!
+  @objc public var urlSources: [MuxStatsAliPlayer.MLYUrlSource]?
+  @objc public init(view: UIKit.UIView!, playerView: UIKit.UIView!, videoURLs: [Swift.String]!)
+  @objc public func getMuxConfigModel() -> MuxStatsAliPlayer.MLYMuxModel
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MLYUrlSource : ObjectiveC.NSObject {
+  @objc public var url: Swift.String
+  @objc public var uid: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class MLYAliPlayer : MuxStatsAliPlayer.PlayerBase {
+  @objc public var player: AliyunPlayer.AliPlayer!
+  @objc public var controlsView: MuxStatsAliPlayer.AliPlayerControlsView?
+  @objc public var videoURL: Swift.String?
+  public var videoIsLive: Swift.Bool?
+  @objc public init(view: UIKit.UIView, playerView: UIKit.UIView, videoURL: Swift.String)
+  @objc public func getMuxConfigModel() -> MuxStatsAliPlayer.MLYMuxModel
+  @objc deinit
+}
+extension MuxStatsAliPlayer.MLYAliPlayer : AliyunPlayer.AVPDelegate {
+  @objc dynamic public func onCurrentPositionUpdate(_ player: AliyunPlayer.AliPlayer!, position: Swift.Int64)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MLYMuxModel : ObjectiveC.NSObject {
+  @objc weak public var delegate: (any AliyunPlayer.AVPDelegate)?
+  @objc weak public var player: AliyunPlayer.AliPlayer?
+  @objc public var videoURL: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MUXAliSDKCustomerCustomDataStore : ObjectiveC.NSObject {
+  @objc public func setCustomData(_ customData: MuxCore.MUXSDKCustomData, forPlayerName name: Swift.String)
+  @objc public func removeData(forPlayerName name: Swift.String)
+  @objc public func customData(forPlayerName name: Swift.String) -> MuxCore.MUXSDKCustomData?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MUXAliSDKCustomerPlayerDataStore : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public func playerData(forPlayerName name: Swift.String) -> MuxCore.MUXSDKCustomerPlayerData?
+  @objc public func removeData(forPlayerName name: Swift.String)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MUXAliSDKCustomerVideoDataStore : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public func setVideoData(_ videoData: MuxCore.MUXSDKCustomerVideoData, forPlayerName name: Swift.String)
+  @objc public func removeData(forPlayerName name: Swift.String)
+  @objc public func videoData(forPlayerName name: Swift.String) -> MuxCore.MUXSDKCustomerVideoData?
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MUXAliSDKCustomerViewDataStore : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public func setViewData(_ viewData: MuxCore.MUXSDKCustomerViewData, forPlayerName name: Swift.String)
+  @objc public func removeData(forPlayerName name: Swift.String)
+  @objc public func viewData(forPlayerName name: Swift.String) -> MuxCore.MUXSDKCustomerViewData?
+  @objc deinit
+}
+@objc @objcMembers public class MUXAliSDKPlayerBinding : ObjectiveC.NSObject {
+  @objc public init(name: Swift.String, software: Swift.String)
+  @objc deinit
+  @objc public func handleAVPlayerAccess(_ notif: Foundation.Notification)
+  @objc override dynamic public func observeValue(forKeyPath keyPath: Swift.String?, of object: Any?, change: [Foundation.NSKeyValueChangeKey : Any]?, context: Swift.UnsafeMutableRawPointer?)
+}
+extension MuxStatsAliPlayer.MUXAliSDKPlayerBinding : AliyunPlayer.AVPDelegate {
+  @objc dynamic public func onError(_ player: AliyunPlayer.AliPlayer!, errorModel: AliyunPlayer.AVPErrorModel!)
+  @objc dynamic public func onPlayerEvent(_ player: AliyunPlayer.AliPlayer!, eventType: AliyunPlayer.AVPEventType)
+  @objc dynamic public func onPlayerStatusChanged(_ player: AliyunPlayer.AliPlayer!, oldStatus: AliyunPlayer.AVPStatus, newStatus: AliyunPlayer.AVPStatus)
+  @objc dynamic public func onCurrentPositionUpdate(_ player: AliyunPlayer.AliPlayer!, position: Swift.Int64)
+  @objc dynamic public func onBufferedPositionUpdate(_ player: AliyunPlayer.AliPlayer!, position: Swift.Int64)
+  @objc dynamic public func onTrackChanged(_ player: AliyunPlayer.AliPlayer!, info: AliyunPlayer.AVPTrackInfo!)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class MUXAliSDKStats : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public static func destroyPlayer(name: Swift.String)
+  @objc public static func monitorAliPlayerViewController(_ mlyModel: MuxStatsAliPlayer.MLYMuxModel, withPlayerName name: Swift.String, customerData: MuxCore.MUXSDKCustomerData) -> MuxStatsAliPlayer.MUXAliSDKPlayerBinding?
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class PlayerBase : ObjectiveC.NSObject {
+  public var view: UIKit.UIView!
+  public var playerView: UIKit.UIView!
+  public var isLoggingEnabled: Swift.Bool! {
+    get
+    set
+  }
+  public var isAliEnableLog: Swift.Bool! {
+    get
+    set
+  }
+  public var logLevel: MuxStatsAliPlayer.LogLevel! {
+    get
+    set
+  }
+  @objc deinit
+}
+extension MuxStatsAliPlayer.LogLevel : Swift.Equatable {}
+extension MuxStatsAliPlayer.LogLevel : Swift.Hashable {}
+extension MuxStatsAliPlayer.LogLevel : Swift.RawRepresentable {}
