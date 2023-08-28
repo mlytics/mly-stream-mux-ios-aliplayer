@@ -33,3 +33,4 @@ Carthage/Build
 *.xcworkspace
 *.vscode
 *.swiftpm
+*.crt
