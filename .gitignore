@@ -34,3 +34,4 @@ Carthage/Build
 *.vscode
 *.swiftpm
 *.crt
+Examples/MuxStatsAliPlayer/MuxKey.swift

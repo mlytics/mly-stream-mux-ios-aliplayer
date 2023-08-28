@@ -15,7 +15,7 @@ class AliListViewController: UIViewController {
     }
     
     func initMuxSDK(){
-        let playerData = MUXSDKCustomerPlayerData(environmentKey: model.environmentKey)
+        let playerData = MUXSDKCustomerPlayerData(environmentKey: MuxKey.MUX_KEY)
         playerData?.playerName = model.title
         let videoData = MUXSDKCustomerVideoData()
         videoData.videoIsLive = false

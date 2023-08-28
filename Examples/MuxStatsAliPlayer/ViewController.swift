@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     
     func initMuxSDK(){
-        let playerData = MUXSDKCustomerPlayerData(environmentKey: model.environmentKey)
+        let playerData = MUXSDKCustomerPlayerData(environmentKey: MuxKey.MUX_KEY)
         playerData?.playerName = model.title
         let videoData = MUXSDKCustomerVideoData()
         videoData.videoIsLive = false
@@ -60,6 +60,5 @@ class MuxVideoModel:NSObject {
     var url:String = "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"
     var humbnail:String = "https://image.mux.com/tcnlhO022JRdWiYarmtZ4S028reTa2IDsX/thumbnail.png"
     var title:String = "MuxStatsAliPlayer"
-    var environmentKey:String = "8b6qt5193roge01u0nhgdpetb"
 }
 
